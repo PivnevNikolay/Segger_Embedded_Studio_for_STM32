@@ -259,9 +259,8 @@ void RYG_Blink(const RYG_LED_HandleTypeDef* ryg, u32 ryg_ms) {
     }
     
     color_state = (color_state + 1) % 8;
-    
-    // Простая задержка
-    for(__IO u32 i = 0; i < ryg_ms * 2000; i++);
+
+    delay_ms(ryg_ms);
 }
 //--------------------------------------------------------------------
 int main(void) {
