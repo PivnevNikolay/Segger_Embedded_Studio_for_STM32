@@ -79,7 +79,7 @@ void LED_Off(LED_HandleTypeDef *led);
 void LED_Toggle(LED_HandleTypeDef *led);
 void delay_ms(u32 ms);
 
-void PORTC_6_INIT(void) {
+void PORTC_13_INIT(void) {
   SET_BIT(RCC->IOPENR, RCC_IOPENR_GPIOCEN);                                                          // Запуск тактирования порта C !!!
   MODIFY_REG(GPIOC->MODER, GPIO_MODER_MODE13, General_purpose_output_mode << GPIO_MODER_MODE13_Pos); // Настройка GPIOC пин 6 на выход (output mode)
   MODIFY_REG(GPIOC->OTYPER, GPIO_OTYPER_OT13, Output_push_pull << GPIO_OTYPER_OT13_Pos);             // Настройка GPIOC пин 6 в режим Push-Pull
@@ -88,7 +88,7 @@ void PORTC_6_INIT(void) {
 }
 
 int main(void) {
-  PORTC_6_INIT();
+  PORTC_13_INIT();
   LED_On(&STM32G030_Led);
   delay_ms(1000);
   LED_Off(&STM32G030_Led);
