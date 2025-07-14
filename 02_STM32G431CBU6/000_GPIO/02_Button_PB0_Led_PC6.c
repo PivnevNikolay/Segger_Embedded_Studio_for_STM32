@@ -1,5 +1,5 @@
 /**-------------------------------------------------------------------
- \date  13.07.2025
+ \date  10.07.2025
  *
  *   STM32G431CBU6
  *   ------------
@@ -13,6 +13,11 @@
  *  |      +3.3V |
  *  |        GND |
  *
+ * В качестве кнопки использую  touch button ttp223
+ *
+ * Подробные примеры тут:
+ * https://deepbluembedded.com/stm32-gpio-pin-read-lab-digital-input/
+ *
  *\ authors        ScuratovaAnna
  *\ сode debugging ScuratovaAnna
  */
@@ -21,6 +26,23 @@
 #include "stm32g4xx.h"
 
 volatile bool condition = false;
+
+#define GPIO_Pin_0  ((uint16_t)0x0001)
+#define GPIO_Pin_1  ((uint16_t)0x0002)
+#define GPIO_Pin_2  ((uint16_t)0x0004)
+#define GPIO_Pin_3  ((uint16_t)0x0008)
+#define GPIO_Pin_4  ((uint16_t)0x0010)
+#define GPIO_Pin_5  ((uint16_t)0x0020)
+#define GPIO_Pin_6  ((uint16_t)0x0040)
+#define GPIO_Pin_7  ((uint16_t)0x0080)
+#define GPIO_Pin_8  ((uint16_t)0x0100)
+#define GPIO_Pin_9  ((uint16_t)0x0200)
+#define GPIO_Pin_10 ((uint16_t)0x0400)
+#define GPIO_Pin_11 ((uint16_t)0x0800)
+#define GPIO_Pin_12 ((uint16_t)0x1000)
+#define GPIO_Pin_13 ((uint16_t)0x2000)
+#define GPIO_Pin_14 ((uint16_t)0x4000)
+#define GPIO_Pin_15 ((uint16_t)0x8000)
 
 #define Input_mode                  (0x0UL)
 #define General_purpose_output_mode (0x1UL)
@@ -57,8 +79,38 @@ int main(void) {
   PORTC_6_INIT_Led();
   PORTB_0_INIT_Button();
   while (1) {
-    condition = READ_BIT(GPIOB->IDR, GPIO_IDR_IDR_0);
-    (condition == true) ? (SET_BIT(GPIOC->BSRR, GPIO_BSRR_BS6)) : (SET_BIT(GPIOC->BSRR, GPIO_BSRR_BR6));
+    //--------------------------------------------------------------------
+    //condition = READ_BIT(GPIOB->IDR, GPIO_IDR_IDR_0);
+    //(condition == true) ? (SET_BIT(GPIOC->BSRR, GPIO_BSRR_BS6)) : (SET_BIT(GPIOC->BSRR, GPIO_BSRR_BR6));
+    //--------------------------------------------------------------------
+    //((GPIOB->IDR & 0x1Ul)==0x1UL)? (SET_BIT(GPIOC->BSRR, GPIO_BSRR_BS6)) : (SET_BIT(GPIOC->BSRR, GPIO_BSRR_BR6));//PB.0
+    //--------------------------------------------------------------------
+    //Если в проекте был настроен на вход вывод PB.1, то
+    //((GPIOB->IDR & 0x2Ul)==0x1UL)? (SET_BIT(GPIOC->BSRR, GPIO_BSRR_BS6)) : (SET_BIT(GPIOC->BSRR, GPIO_BSRR_BR6));
+    //--------------------------------------------------------------------
+    //Если в проекте был настроен на вход вывод PB.2, то
+    //((GPIOB->IDR & 0x4Ul)==0x1UL)? (SET_BIT(GPIOC->BSRR, GPIO_BSRR_BS6)) : (SET_BIT(GPIOC->BSRR, GPIO_BSRR_BR6));
+    //--------------------------------------------------------------------
+    //Если в проекте был настроен на вход вывод PB.3, то
+    //((GPIOB->IDR & 0x8Ul)==0x1UL)? (SET_BIT(GPIOC->BSRR, GPIO_BSRR_BS6)) : (SET_BIT(GPIOC->BSRR, GPIO_BSRR_BR6));
+    //--------------------------------------------------------------------
+    //#define GPIO_Pin_0  ((uint16_t)0x0001)//Px.0(PA.0; PB.0; PC.0 ... Px.0)
+    //#define GPIO_Pin_1  ((uint16_t)0x0002)//Px.1
+    //#define GPIO_Pin_2  ((uint16_t)0x0004)//Px.2
+    //#define GPIO_Pin_3  ((uint16_t)0x0008)//Px.3 и т.д.
+    //#define GPIO_Pin_4  ((uint16_t)0x0010)
+    //#define GPIO_Pin_5  ((uint16_t)0x0020)
+    //#define GPIO_Pin_6  ((uint16_t)0x0040)
+    //#define GPIO_Pin_7  ((uint16_t)0x0080)
+    //#define GPIO_Pin_8  ((uint16_t)0x0100)
+    //#define GPIO_Pin_9  ((uint16_t)0x0200)
+    //#define GPIO_Pin_10 ((uint16_t)0x0400)
+    //#define GPIO_Pin_11 ((uint16_t)0x0800)
+    //#define GPIO_Pin_12 ((uint16_t)0x1000)
+    //#define GPIO_Pin_13 ((uint16_t)0x2000)
+    //#define GPIO_Pin_14 ((uint16_t)0x4000)
+    //#define GPIO_Pin_15 ((uint16_t)0x8000)//Px.15
+    //согласно выше приведённому можно использовать макросы, для того чтобы код было удобно читать и сам код был более понятным:
+    ((GPIOB->IDR & GPIO_Pin_0)==0x1UL)? (SET_BIT(GPIOC->BSRR, GPIO_BSRR_BS6)) : (SET_BIT(GPIOC->BSRR, GPIO_BSRR_BR6));
   }
 }
-/*************************** End of file ****************************/
