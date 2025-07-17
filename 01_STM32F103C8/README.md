@@ -1,5 +1,7 @@
 ## STM32F103C8T6 BluePill +
----
+---  
+The [STM32F103C8](https://www.st.com/en/microcontrollers-microprocessors/stm32f103c8.html) medium-density performance line family incorporates the high-performance Arm® Cortex®-M3 32-bit RISC core operating at a 72 MHz frequency, high-speed embedded memories (Flash memory up to 128 Kbytes and SRAM up to 20 Kbytes), and an extensive range of enhanced I/Os and peripherals connected to two APB buses. All devices offer two 12-bit ADCs, three general purpose 16-bit timers plus one PWM timer, as well as standard and advanced communication interfaces: up to two I2Cs and SPIs, three USARTs, an USB and a CAN.  
+
 |   *Title* | *Parameter* | 
 |:----------|:------------|
 |Chip       |STM32F103C8T6| 
