@@ -10,6 +10,7 @@
 
 ### Board
 ---
+![alt-текст](https://github.com/PivnevNikolay/Segger_Embedded_Studio_for_STM32/blob/main/01_STM32F103C8/photo/001.jpg "STM32F103C8T6")  
 отладочная плата BluePill+ [WeAct STM32F103 Development Board Kit](https://aliexpress.ru/item/1005004918334754.html?sku_id=12000034303875973&spm=a2g2w.stores.seller_list.4.7a3d47dcj9qqdl)  
 [Ссылка](https://github.com/WeActStudio/BluePill-Plus) на репозиторий отладочной платы WeAct BluePill-Plus (STM32F103C8T6) в github.
 
