@@ -1,6 +1,10 @@
 /**-------------------------------------------------------------------
  \date  03.08.2025
  *
+ | ** SysTick                                                   ** |
+ | ** Код написан в IDE SEGGER Embedded Studio for ARM 7.32a    ** |
+ | ** J-Link Software and Documentation pack V7.90 [2023-08-02] ** |
+ *
  *   STM32G431CBU6
  *   ------------
  *  |            |
